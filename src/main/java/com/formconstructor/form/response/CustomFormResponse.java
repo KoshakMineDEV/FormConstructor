@@ -2,16 +2,10 @@ package com.formconstructor.form.response;
 
 import cn.nukkit.Player;
 import com.formconstructor.form.CustomForm;
+import com.formconstructor.form.element.custom.*;
 import com.formconstructor.form.element.custom.validator.ValidationField;
 import com.formconstructor.form.element.custom.validator.Validator;
 import com.formconstructor.form.handler.CustomFormHandler;
-import com.formconstructor.form.element.custom.CustomElement;
-import com.formconstructor.form.element.custom.Dropdown;
-import com.formconstructor.form.element.custom.Input;
-import com.formconstructor.form.element.custom.Label;
-import com.formconstructor.form.element.custom.Slider;
-import com.formconstructor.form.element.custom.StepSlider;
-import com.formconstructor.form.element.custom.Toggle;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -67,6 +61,31 @@ public class CustomFormResponse extends FormResponse<CustomFormHandler> {
             .filter(clazz::isInstance)
             .map(clazz::cast)
             .collect(Collectors.toList());
+    }
+
+    /**
+     * Get Header by index
+     * @param index Header index
+     * @return Header
+     */
+    public Header getHeader(int index) {
+        return (Header) getElement(index);
+    }
+    /**
+     * Get Header by element id
+     * @param elementId Header identifier
+     * @return Header
+     */
+    public Header getHeader(String elementId) {
+        return getElement(elementId, Header.class);
+    }
+
+    /**
+     * Get all labels
+     * @return List<Label>
+     */
+    public List<Header> getHeaders() {
+        return getElements(Header.class);
     }
 
     /**
